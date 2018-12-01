@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Calendars</h1>
-
+<div class="row">
+  <h1>Calendars</h1>
+</div>
 <table>
   <thead>
     <tr>
@@ -24,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Calendar', new_calendar_path %>
+<%= link_to 'New Calendar', {}, href: new_calendar_path, class: "btn btn-primary" %>
