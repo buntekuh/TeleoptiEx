@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Calendar.create(name: "Tick")
+Calendar.create(name: "Trick")
+Calendar.create(name: "Track")

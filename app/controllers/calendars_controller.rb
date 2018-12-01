@@ -4,7 +4,7 @@ class CalendarsController < ApplicationController
   # GET /calendars
   # GET /calendars.json
   def index
-    @calendars = Calendar.all
+    @calendars = Calendar.all.order(:name)
   end
 
   # GET /calendars/1

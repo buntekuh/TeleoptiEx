@@ -9,12 +9,11 @@ $ ->
     console.log val
     obj = $('#calendar-datalist').find('option[value=\'' + val + '\']')
     if obj != null and obj.length > 0
-      console.log 'valid'
+      $(".show-calendar-button").removeClass('d-none')
+      $(".create-calendar-button").addClass('d-none')
     else
-      console.log 'invalid'
+      $(".show-calendar-button").addClass('d-none')
+      $(".create-calendar-button").removeClass('d-none')
 
   $(".calendar-select").on 'input',  ->
-    setTimeout(calendarSelectCallback, 100)
-
-  $(".calendar-option").click  ->
     setTimeout(calendarSelectCallback, 100)

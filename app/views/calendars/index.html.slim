@@ -1,12 +1,13 @@
-p#notice
-    .row
-      h1 Calendars
 
-    .row
-    input.calendar-select list="calendar-datalist" name="browser"  onChange="{this.calendarSelectCallback}"/
-    datalist#calendar-datalist
-      option.calendar-option value=("Internet Explorer")
-      option.calendar-option value="Firefox"
-      option.calendar-option value="Chrome"
-      option.calendar-option value="Opera"
-      option.calendar-option value="Safari"
+.row
+  h1 Teleopti Ex
+
+.row
+  .input-group
+    input.form-control.calendar-select.form-control list="calendar-datalist" name="name" aria-describedby="basic-addon2" aria-label=("Your name") placeholder=("Your Name") type="text" value=""/
+    .input-group-append
+      button.btn.btn-danger.create-calendar-button.d-none type="button"  Create
+      button.btn.btn-primary.show-calendar-button.d-none type="button"  Show
+
+datalist#calendar-datalist
+  = options_from_collection_for_select(@calendars, :name, :name)
