@@ -1,11 +1,12 @@
 p#notice
     .row
       h1 Calendars
-    table
-      thead
-        tr
-          th Name
-          th colspan="3"
-      tbody
-    br/
-    = link_to 'New Calendar', {}, href: new_calendar_path, class: "btn btn-primary"
+
+    .row
+    input.calendar-select list="calendar-datalist" name="browser"  onChange="{this.calendarSelectCallback}"/
+    datalist#calendar-datalist
+      option.calendar-option value=("Internet Explorer")
+      option.calendar-option value="Firefox"
+      option.calendar-option value="Chrome"
+      option.calendar-option value="Opera"
+      option.calendar-option value="Safari"
