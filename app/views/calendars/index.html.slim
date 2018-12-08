@@ -1,17 +1,25 @@
 .container
   br /
   .row
-    .col-md-12
+    .col-md-6
       h1 Teleopti Ex
+    .col-md-6
+      .float-right.help
+        a.toggle-help href="#"
+          | Help &nbsp;
+          i class="fas fa-question-circle"
 
-  .container
+
+  .container.help-card.d-none
     .row.card
-      .card-header Help
+      .card-header.help
+        | Help
+        i.fas.fa-question-circle.float-right
       .card-body
-        p To use the tool you need to create a new calendar that bears your name.
+        p To use the tool you need to create a calendar that bears your name.
         p If you use the tool for the first time, type in your name then click create.
         p Otherwise select your name from the dropdown.
-        p The first letter in a word is capitalized automatically.
+        p hint: The first letter in a word is capitalized automatically.
 br /
 .container
   .row
@@ -26,9 +34,11 @@ br /
 
   br /
   br /
-  .container
+  .container.help-card.d-none
     .row.card
-      .card-header Help
+      .card-header.help
+        | Help
+        i.fas.fa-question-circle.float-right
       .card-body
         p Select the year and month you wish to add or update your shifts for.
         p Open Teleopti in another tab then open your month view.
@@ -39,7 +49,7 @@ br /
         p.code 8:00
         p.code 3
         p. Be sure to copy all data of all days in that month.
-        p. Do not copy data from other days.
+        p. Do not copy data from doys of other months.
         p finally press submit.
 
 

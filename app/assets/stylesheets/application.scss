@@ -34,8 +34,12 @@ input[type="color"]:focus,
   outline: 0 none;
 }
 
-h1 {
+h1, .help {
   color: #FF5733;
+}
+
+.card-header {
+  font-weight: bold;
 }
 
 .error {

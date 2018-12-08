@@ -49,3 +49,9 @@ $ ->
       success: calendarCreateSuccessCallback()
       error: calendarCreateErrorCallback()
     });
+
+  $(".toggle-help").on 'click', ->
+    if($('.help-card').hasClass('d-none'))
+      $('.help-card').removeClass('d-none')
+    else
+      $('.help-card').addClass('d-none')
