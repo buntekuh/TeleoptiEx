@@ -50,8 +50,9 @@ $ ->
       error: calendarCreateErrorCallback()
     });
 
-  $(".toggle-help").on 'click', ->
+  $(".toggle-help").on 'click', (event) ->
     if($('.help-card').hasClass('d-none'))
       $('.help-card').removeClass('d-none')
     else
       $('.help-card').addClass('d-none')
+    event.preventDefault();
