@@ -20,11 +20,12 @@ calendarSelectCallback = ->
     $(".show-calendar-button").addClass('d-none')
     $(".create-calendar-button").removeClass('d-none')
 
-calendarCreateSuccessCallback = (data) ->
-  console.log(data)
-
-calendarCreateErrorCallback = () ->
+calendarCreateErrorCallback = ->
   $('.calendar-select').addClass('error')
+
+showCalendar = ->
+  name = $('.calendar-select').val()
+  $('.show-calendar').load('/calendars/'+name+'.html', { calendar: {name: $('.calendar-select').val()} })
 
 $ ->
   $.ajaxSetup headers: 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -34,21 +35,15 @@ $ ->
 
   $(".create-calendar-button").on 'click', ->
     $.ajax({
-      type: "POST",
-      url: '/calendars.json',
-      data: { calendar: {name: $('.calendar-select').val()} }
-      success: calendarCreateSuccessCallback()
-      error: calendarCreateErrorCallback()
-    });
+      type: "POST"
+      url: '/calendars.html'
+      data: { name: $('.calendar-select').val() }
+      success: showCalendar
+      error: calendarCreateErrorCallback
+    })
 
   $(".show-calendar-button").on 'click', ->
-    $.ajax({
-      type: "POST",
-      url: '/calendars.json',
-      data: { calendar: {name: $('.calendar-select').val()} }
-      success: calendarCreateSuccessCallback()
-      error: calendarCreateErrorCallback()
-    });
+    showCalendar()
 
   $(".toggle-help").on 'click', (event) ->
     if($('.help-card').hasClass('d-none'))

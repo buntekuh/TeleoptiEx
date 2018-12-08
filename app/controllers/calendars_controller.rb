@@ -10,7 +10,7 @@ class CalendarsController < ApplicationController
   # GET /calendars/1
   # GET /calendars/1.json
   def show
-    
+    debugger
   end
 
   # POST /calendars
@@ -20,9 +20,9 @@ class CalendarsController < ApplicationController
 
     respond_to do |format|
       if @calendar.save
-        format.json { render :show, status: :created, location: @calendar }
+        format.html { render :show, status: :created, location: @calendar }
       else
-        format.json { render json: @calendar.errors, status: :unprocessable_entity }
+        format.html { render json: @calendar.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -30,11 +30,11 @@ class CalendarsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_calendar
-      @calendar = Calendar.find(params[:id])
+      @calendar = Calendar.find(params[:name])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calendar_params
-      params.require(:calendar).permit(:name)
+      params.permit(:name)
     end
 end
