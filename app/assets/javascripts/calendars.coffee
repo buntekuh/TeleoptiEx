@@ -40,3 +40,12 @@ $ ->
       success: calendarCreateSuccessCallback()
       error: calendarCreateErrorCallback()
     });
+
+  $(".show-calendar-button").on 'click', ->
+    $.ajax({
+      type: "POST",
+      url: '/calendars.json',
+      data: { calendar: {name: $('.calendar-select').val()} }
+      success: calendarCreateSuccessCallback()
+      error: calendarCreateErrorCallback()
+    });
