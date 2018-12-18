@@ -10,39 +10,30 @@ class CalendarsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_calendar_url
-    assert_response :success
-  end
-
   test "should create calendar" do
-    assert_difference('Calendar.count') do
-      post calendars_url, params: { calendar: { name: @calendar.name } }
+    assert_difference('Calendar.count', 1) do
+      post calendars_url, params: { name: "Blumm", format: 'json' }
     end
+    assert_response :created
 
-    assert_redirected_to calendar_url(Calendar.last)
+    assert_difference('Calendar.count', 0) do
+      post calendars_url, params: { name: "Blumm", format: 'json' }
+    end
+    assert_response :unprocessable_entity
   end
 
   test "should show calendar" do
-    get calendar_url(@calendar)
+    get "/calendar/#{@calendar.name}"
     assert_response :success
   end
-
+  #
   test "should get edit" do
-    get edit_calendar_url(@calendar)
+    get "/calendar/#{@calendar.name}/edit"
     assert_response :success
   end
-
-  test "should update calendar" do
-    patch calendar_url(@calendar), params: { calendar: { name: @calendar.name } }
-    assert_redirected_to calendar_url(@calendar)
-  end
-
-  test "should destroy calendar" do
-    assert_difference('Calendar.count', -1) do
-      delete calendar_url(@calendar)
-    end
-
-    assert_redirected_to calendars_url
-  end
+  #
+  # test "should update calendar" do
+  #   patch calendar_url(@calendar), params: { name: @calendar.name } }
+  #   assert_response :success
+  # end
 end

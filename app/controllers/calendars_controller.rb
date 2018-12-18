@@ -20,9 +20,9 @@ class CalendarsController < ApplicationController
 
     respond_to do |format|
       if @calendar.save
-        format.html { render :show, status: :created, location: @calendar }
+        format.json { head :created }
       else
-        format.html { render json: @calendar.errors, status: :unprocessable_entity }
+        format.json { head :unprocessable_entity }
       end
     end
   end

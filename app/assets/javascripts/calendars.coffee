@@ -45,7 +45,7 @@ $ ->
   $(".create-calendar-button").on 'click', ->
     $.ajax({
       type: "POST"
-      url: '/calendars.html'
+      url: '/calendars.json'
       data: { name: $('.calendar-select').val() }
       success: editCalendar
       error: calendarCreateErrorCallback
