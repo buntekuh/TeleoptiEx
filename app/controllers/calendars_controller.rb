@@ -37,7 +37,7 @@ class CalendarsController < ApplicationController
   def update
     params.permit(:utf8, :authenticity_token, :month, :year, :id, :data)
     @calendar = Calendar.find(params[:id])
-    
+    debugger
     respond_to do |format|
       if @calendar.update(calendar_params)
         format.html { head :ok }
