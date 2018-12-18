@@ -1,5 +1,5 @@
 class CalendarsController < ApplicationController
-  before_action :set_calendar, only: [:show, :edit, :update, :destroy]
+  before_action :set_calendar, only: [:show, :edit]
 
   # GET /calendars
   # GET /calendars.json
@@ -35,6 +35,9 @@ class CalendarsController < ApplicationController
   # PATCH/PUT /calendars/1
   # PATCH/PUT /calendars/1.json
   def update
+    params.permit(:utf8, :authenticity_token, :month, :year, :id, :data)
+    @calendar = Calendar.find(params[:id])
+    
     respond_to do |format|
       if @calendar.update(calendar_params)
         format.html { head :ok }

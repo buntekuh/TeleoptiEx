@@ -51,6 +51,17 @@ $ ->
       error: calendarCreateErrorCallback
     })
 
+  $('.edit-calendar').on 'click', '.update-calendar-button', ->
+    $.ajax({
+      type: "POST",
+      type: 'PUT',
+      url: $('.update-calendar-form').attr('action')
+      data: $(".update-calendar-form").serialize()
+      #success: editCalendar
+      #error: calendarCreateErrorCallback
+    })
+
+
   $(".edit-calendar-button").on 'click', ->
     editCalendar()
 

@@ -19,7 +19,7 @@ br /
       p finally press submit.
 
 
-form
+= form_tag @calendar, class: "update-calendar-form"
   .container
     .row
       .col-md-6
@@ -32,7 +32,7 @@ form
     .row
       .col-md-12
         br /
-        textarea.form-control rows="20" placeholder="Paste your calendar data here"
+        textarea.form-control rows="20" placeholder="Paste your calendar data here" name="data"
 
     .row
       .col-md-12
