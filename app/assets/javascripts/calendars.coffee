@@ -14,18 +14,27 @@ calendarSelectCallback = ->
 
   obj = $('#calendar-datalist').find('option[value=\'' + val + '\']')
   if obj != null and obj.length > 0
-    $(".show-calendar-button").removeClass('d-none')
+    $(".edit-calendar-button").removeClass('d-none')
     $(".create-calendar-button").addClass('d-none')
   else
-    $(".show-calendar-button").addClass('d-none')
+    $(".edit-calendar-button").addClass('d-none')
     $(".create-calendar-button").removeClass('d-none')
 
 calendarCreateErrorCallback = ->
   $('.calendar-select').addClass('error')
 
-showCalendar = ->
+toggleHelp = ->
+  if($('.help-card').hasClass('d-none'))
+    $('.help-card').removeClass('d-none')
+  else
+    $('.help-card').addClass('d-none')
+
+editCalendar = ->
   name = $('.calendar-select').val()
-  $('.show-calendar').load('/calendars/'+name+'.html', { calendar: {name: $('.calendar-select').val()} })
+  $('.edit-calendar').load('/calendar/'+name+'/edit.html', ->
+    if(!($('.help-card')[0]).hasClass('d-none'))
+      $('.help-card').removeClass('d-none')
+  )
 
 $ ->
   $.ajaxSetup headers: 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -38,16 +47,13 @@ $ ->
       type: "POST"
       url: '/calendars.html'
       data: { name: $('.calendar-select').val() }
-      success: showCalendar
+      success: editCalendar
       error: calendarCreateErrorCallback
     })
 
-  $(".show-calendar-button").on 'click', ->
-    showCalendar()
+  $(".edit-calendar-button").on 'click', ->
+    editCalendar()
 
   $(".toggle-help").on 'click', (event) ->
-    if($('.help-card').hasClass('d-none'))
-      $('.help-card').removeClass('d-none')
-    else
-      $('.help-card').addClass('d-none')
+    toggleHelp()
     event.preventDefault();
