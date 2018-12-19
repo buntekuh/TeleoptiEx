@@ -23,21 +23,27 @@ calendarSelectCallback = ->
 calendarCreateErrorCallback = ->
   $('.calendar-select').addClass('error')
 
-toggleHelp = ->
-  if($('.help-card').hasClass('d-none'))
+showHideHelp = ->
+  if window.showHelp
     $('.help-card').removeClass('d-none')
   else
     $('.help-card').addClass('d-none')
 
+
+toggleHelp = ->
+  window.showHelp = !window.showHelp
+  showHideHelp()
+
 editCalendar = ->
   name = $('.calendar-select').val()
   $('.edit-calendar').load('/calendar/'+name+'/edit.html', ->
-    if(!($('.help-card')[0]).hasClass('d-none'))
-      $('.help-card').removeClass('d-none')
+    showHideHelp()
   )
 
 $ ->
   $.ajaxSetup headers: 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+
+  window.showHelp = false;
 
   $(".calendar-select").on 'input',  ->
     setTimeout(calendarSelectCallback, 100)
